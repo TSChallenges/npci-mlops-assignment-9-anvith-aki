@@ -1,0 +1,11 @@
+kind: Service
+metadata:
+  name: nginx-clusterip-service
+spec:
+  selector:
+    app: nginx  # Select Pods with the label 'app: nginx'
+  ports:
+    - protocol: TCP
+      port: 80        # Service port
+      targetPort: 80  # Port on the Pods
+  type: ClusterIP     # Expose the Service on a cluster-internal IP

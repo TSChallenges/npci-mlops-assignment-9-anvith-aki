@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pvc-pod
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: nginx-volume  # Name of the volume
+      mountPath: /usr/share/nginx/html  # Mount point inside the container (standard Nginx data directory)
+  volumes:
+  - name: nginx-volume  # Name of the volume (must match volumeMounts.name)
+    persistentVolumeClaim:
+      claimName: nginx-pvc  # Reference the PVC we created
